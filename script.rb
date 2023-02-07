@@ -1,9 +1,9 @@
 current_week_prices = [17,3,6,9,15,8,6,1,10,4]
 
-#min_price = current_week_prices.min()
-#min_price_index = current_week_prices.find_index(current_week_prices.min())
-sliced_prices = current_week_prices.slice(current_week_prices.find_index(current_week_prices.min()), current_week_prices.length)
-sliced_prices.minmax()
+
+def get_min_num_index(array)
+  array.find_index(array.min())
+end
 
 def slice_array(array)
   sliced_array = array.slice(array.find_index(array.min()), array.length)
@@ -11,3 +11,4 @@ def slice_array(array)
 end
 
 p slice_array(current_week_prices)
+p get_min_num_index(current_week_prices)
