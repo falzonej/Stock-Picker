@@ -1,6 +1,6 @@
 require 'pry-byebug'
 
-current_week_prices = [17,3,6,9,15,8,6,1,10,4]
+current_week_prices = [5,1,1,4]
 
 
 def get_min_num_index(array)
@@ -8,7 +8,11 @@ def get_min_num_index(array)
 end
 
 def delete_array_element(array)
-  cleaned_array = array.reject {|price| price == array.min()}
+  cleaned_array = array.delete_if do |price| 
+    price_index = array.find_index(price) 
+    min_price_index = array.find_index(array.min())
+    price_index == min_price_index
+  end
 end
 
 #
@@ -28,17 +32,22 @@ end
 def get_profit_pairs(array)
   profit_pairs = {}
   input_array = array
-  (array.length-1).times do
+  p input_array
+  (array.length).times do
     profit_pairs = profit_pairs.merge(add_found_pair_to_hash(input_array))
     input_array = delete_array_element(input_array)
+    p input_array
   end
   profit_pairs
+
 end
 
 def show_highest_profit_pair(array)
   profit_pairs = get_profit_pairs(array)
   profit_pairs.each { |k,v| puts v if k == profit_pairs.keys.max}
 end
+
+
 
 p show_highest_profit_pair(current_week_prices)
 
